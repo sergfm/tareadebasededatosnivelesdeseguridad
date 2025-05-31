@@ -1,0 +1,33 @@
+--Probando los nuevos permisos del usuario Juan en la bd Empresa
+Use Empresa
+USE Empresa;
+
+GRANT SELECT ON dbo.Empleados TO Juan;
+
+
+INSERT INTO dbo.Empleados (ID, Nombre, Salario)
+VALUES (2, 'Pedro', 2500.00);
+select * from Empleados
+
+-- Actualizar solo el nombre del empleado con ID 1
+UPDATE dbo.Empleados
+SET Nombre = 'Pedro Gómez'
+WHERE ID = 1;
+select * from Empleados
+
+-- Actualizar solo el salario del empleado con ID 1
+UPDATE dbo.Empleados
+SET Salario = 3000.00
+WHERE ID = 1;
+select * from Empleados
+
+-- Esto debería FALLAR porque no se otorgó permiso para modificar ID
+UPDATE dbo.Empleados
+SET ID = 2
+WHERE ID = 1;
+select * from Empleados
+
+--Eliminando un usuario
+DELETE FROM dbo.Empleados
+WHERE ID = 2;
+select * from Empleados
